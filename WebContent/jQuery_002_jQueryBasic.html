@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	// onload
+	$(document).ready(function(){
+		// == $("div:").eq(0).css(~~)
+		$("div:eq(0)").css({"border":"1px solid black","width":"300px"});
+		
+		$("#view").css({"border":"1px solid tomato","width":"400px","height":"150px"});
+	});
+
+	function a1(){
+		// jQuery에서는 리스트형도 알아서 처리해줌
+		// 밑에 span 세개 전부 적용됨
+		$("span").css("color","red");
+		// 원래 우리가 했떤 건
+// 		var span = document.getElementsByTagName("span");
+// 		for (var i = 0; i < span.length; i++) {
+// 			span[i].style.color = "green";
+// 		}
+		
+		// 코드 내용 보여주기
+// 		document.getElementById("view").textContent = '$("span").css("color","red")';
+		$("#view").text('$("span").css("color","red")');
+	}
+	
+	function a2(){
+		// $는 NameSpace의 약어이고, 원래는 jQuery("#t1") 이런식으로 사용해야함
+		jQuery("#t1").css("color","blue");
+		$("#view").text('jQuery("#t1").css("color","blue")');
+	}
+	
+	function a3() {
+		$(".t2").css("color","purple");
+		$("#view").text('$(".t2").css("color","purple")');
+	}
+	
+	function a4() {
+		// li밑에 있는 모든 span! (3개 전부 선택됨)
+		$("li span").css("color","orange");
+	}
+	
+	function a5(){
+		// span인데 li밑에 있는 애 (2개 선택) <b>하위<span>은 선택되지 않음
+		$("li>span").css("color","lime");
+	}
+	
+	function a6(){
+		// css에서 odd,even 사용하려면 엄청 어려움
+		// 홀수만
+		$("li:nth-child(odd)").css("background-color","pink");
+		// 짝수만
+		$("li:nth-child(even)").css("background-color","skyblue");
+		// 3의 배수만
+		$("li:nth-child(3n)").css("background-color","lime");
+	}
+
+	function a7() {
+		$("li:first-child").css("background-color","green");	
+	}
+
+	function a8() {
+		$("li:last-child").css("background-color","hotpink");	
+	}
+	
+	
+</script>
+<body>
+<h1>Selector 표현식</h1>
+<div>
+	<ul class="sub_menu2">
+		<li><span>tag로 선택하기</span></li>
+		<li id="t1">id로 선택하기</li>
+		<li class="t2">class로 선택하기</li>
+		<li><span>parent로 child선택하기</span></li>
+		<li><b><span>parent &gt; child 선택하기</span></b></li>
+		<li>(odd/even)으로 선택하기</li>
+		<li>first로 선택하기</li>
+		<li>last로 선택하기</li>
+	</ul>
+</div>
+
+<div>
+	<button onclick="a1()">tag</button>
+	<button onclick="a2()">id</button>
+	<button onclick="a3()">class</button>
+	<button onclick="a4()">p->c</button>
+	<button onclick="a5()">p>c</button>
+	<button onclick="a6()">nth</button>
+	<button onclick="a7()">first-child</button>
+	<button onclick="a8()">last-child</button>
+</div>
+
+<h2>코드내용</h2>
+<div id="view"></div>
+</body>
+</html>

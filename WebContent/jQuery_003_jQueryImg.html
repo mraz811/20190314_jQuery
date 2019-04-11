@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+img{
+width: 100px;
+height: 100px;
+}
+h1{
+	font-size: 0.5em;
+}
+</style>
+</head>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	function imgSize() {
+ 		$("img").css({"width":"200px","height":"200px"});
+// 		var imgs = document.getElementsByTagName("img")
+// 		for (var i = 0; i < imgs.length; i++) {
+// 			document.getElementsByTagName("img")[i].style.width = "200px";
+// 			document.getElementsByTagName("img")[i].style.height = "200px";
+// 		}
+	}
+	
+	function idSelector(){
+ 		$("#selId").hide();
+// 		$("#selId").css("display","none");
+//		$("#selId").toggle();
+//		document.getElementById("selId").style.display = "none";
+	}
+	
+	function classSelector(){
+		$(".selClass").css("opacity", "0.5");
+// 		var classes = document.getElementsByClassName("selClass");
+// 		for (var i = 0; i < classes.length; i++) {
+// 			classes[i].style.opacity = "0.5";
+// 		}
+	}
+	
+	function propSelector() {
+		$("img[title*=02]").slideUp(2000);
+//		$("img[title*=02]").slideToggle();
+		// img 내의 속성 title에서 02값이 있는 경우
+	}
+	
+	function changeImg() {
+		$("td>img").attr("src", "./images/img02.jpg");
+		document.getElementsByTagName("img")
+	}
+</script>
+<body>
+	<h2>1. 이미지들의 크기를 모두 200px * 200px로 설정하세요</h2>
+	<button onclick="imgSize()">클릭</button>
+	<br>
+	
+	<h2>2. 이미지 중 id가 selId인 태그를 찾아 숨기세요</h2>
+	<button onclick="idSelector()">클릭</button>
+	<br>
+	
+	<h2>3. 이미지 중 class가 selClass인 태그를 찾아 투명도(opacity) 0.5로 설정하세요</h2>
+	<button onclick="classSelector()">클릭</button>
+	
+	<h2>4. 이미지 속성 중 (title 속성 값 중 02를 포함하는 Img) slide 기능을 설정하세요</h2>
+	<button onclick="propSelector()">클릭</button>
+	
+	<h2>5. 이미지 바꾸기(td 자식요소 img 태그만 선택하여 바꾸기)</h2>
+	<button onclick="changeImg()">클릭</button>
+	
+	<table>
+		<tr>
+			<td><img id="selId" title="img01" src="./images/img01.jpg"></td>
+			<td><img title="img02" src="./images/img01.jpg"></td>
+			<td><img class="selClass" title="img023" src="./images/img01.jpg"></td>
+			<td><img class="selClass" title="img04" src="./images/img01.jpg"></td>
+		</tr>
+		<tr>
+			<td><img id="selId" title="img01" src="./images/img01.jpg"></td>
+			<td><span><img title="img02" src="./images/img01.jpg"></span></td>
+			<td><img class="selClass" title="img023" src="./images/img01.jpg"></td>
+			<td><img class="selClass" title="img04" src="./images/img01.jpg"></td>
+		</tr>
+	</table>
+</body>
+</html>
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	// 폼 유효셩 검사
+	// = $(document).ready(function());
+	$(function(){
+		$(".error").hide(); // 에러메세지 숨김
+		// onsubmit이 자동으로 걸립니다.
+		$("#signal").submit(function(){ 
+			// 유효성 확인은 null과 "" 반드시 확인해 주어야 한다. 이름이 없으면 null, 값이 있는데 빈공간""
+			if($(".infoBox").val()==null || $(".infoBox").val()==""){
+				$(".error").show();
+				return false;
+			}
+		});
+		
+		// 체크박스 체크여부 확인, 그 값 출력
+		$("#confirm").click(function(){
+// 			alert("작동");
+// 			document.getElementById("result").innerHTML = "값 입력";
+// 			document.getElementById("result").innerHTML = ""; // 이거 대신 empty() 사용 가능
+			$("#result").empty(); // 태그 안에 있는 값을 지워줌
+			
+			if($("input[name=chk]:checked").length == 0){
+				alert("하나 이상 체크해 주세요");
+			} else {
+				$("input[name=chk]:checked").each(function(i){
+					var chk = $("input[name=chk]:checked").eq(i); //위치
+					// value 뿐 아니라 메뉴이름도 가지고 오고 싶다.
+					var menu = chk.next().text(); // next().text() elements로 감싸진걸
+// 					alert(menu);
+					var price = chk.val();
+// 					alert(price);
+					$("#result").append(menu+" 가격: "+price+"<br>");
+				}); //each: for문
+			}
+		});
+		
+		// 과제: 체크박스가 전체 선택되어진 상황에서 하위 chk에 있는 체크박스가 풀리면 전체 체크박스를 풀어준다.
+		$("input[name=chk]").click(function(){
+			if($("input[name=chk]").length == $("input[name=chk]:checked").length){
+				$("input[name=all]").prop("checked", true);
+			} else {
+				$("input[name=all]").prop("checked", false);
+			}
+		});
+		
+		
+	});
+	
+	// 전체선택
+	function allchk(bool){
+		// 값 읽어올 때 : attr("속성이름"), 값 가져올 때: attr("속성이름","값") : 속성 값을 추가하거나 변경
+		// 값 읽어올 때 : prop("속성이름"), 값 가져올 때: prop("속성이름","값") : 상태 값을 가져옴
+		// 상태와 속성이 다르다.
+		$("input[name=chk]").each(function(){
+			$(this).prop("checked", bool);	
+//			$(this).attr("checked", bool); 
+			// attr은 현재 원래 상태를 가지고 있어서, 아예 속성을 추가하거나 빼주거나. 현재 속성을 변환하지 않음
+			// prop은 input 내에 checked="checked"옵션이 생기거나 하지 않고, 다 덮어줌
+			// 선언되어있는 속성을 바꿔주지 않는 attr과 달리 prop는 전체를 새로 만들어줌.
+		});
+	}
+	
+
+</script>
+<body>
+	<form id="signal" method="get" action="">
+		<div>
+			<span class="label">사용자ID</span>
+			<input type="text" class="infoBox" name="userid">
+			<span class="error" style="color:red">반드시 입력하세요</span>
+		</div>
+		<input type="submit" class="submit" value="입력하기">
+	</form>
+	<hr>
+	
+	<fieldset style="width: 300px">
+		<legend>체크 여부 확인</legend>
+		<input type="checkbox" name="all" onclick="allchk(this.checked)"> 전체 선택<br>
+		<input type="checkbox" name="chk" value="1000"><b>국밥</b><br>
+		<input type="checkbox" name="chk" value="2000"><b>피자</b><br>
+		<input type="checkbox" name="chk" value="3000"><b>소주</b><br>
+		<input type="button" value="확인" id="confirm"><br>
+		<span>선택한 음식 가격</span>
+		<div id="result"></div>
+		
+	</fieldset>
+	
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	img{
+		width: 200px;
+		height: 200px;
+		position: absolute;
+		left: 200px;
+		top: 100px;
+	}
+	p{
+		width: 100px;
+		border: 1px solid tomato;
+		position: absolute;
+		left: 10px;
+		display: none;
+	}
+	
+</style>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// b태그 클릭시 이벤트 발생
+		$("b").click(function(){
+			$("p").toggle();	
+			$("p").each(function(i){
+				$(this).animate({"top":50*(i+1)+"px"},1000);
+			});
+		});
+	
+		// p태그 클릭시 이벤트 발생
+		$("p").bind("click", function(){ // 원래 문법인데 그냥 .click으로 사용해도 됨 같음
+			var ele = $(this);
+			ele.css("background", "orange");
+			// siblings: 같은 nodetree에 있는 요소를 탐색
+			ele.siblings("p").css("background","white");
+			
+			// 만약 p태그가 show라는 글자를 포함하고 있다면!
+			if(ele.is("p:contains(show)")){
+				// img태그를 숨겨보겠다!
+				$("#img1").show();
+			}
+
+			if(ele.is("p:contains(hide)")){
+				$("#img1").hide();
+			}
+
+			if(ele.is("p:contains(toggle)")){
+				$("#img1").toggle();
+			}
+
+			if(ele.is("p:contains(slideDown)")){
+				$("#img1").slideDown();
+			}
+			
+			if(ele.is("p:contains(slideUp)")){
+				$("#img1").slideUp();
+			}
+			
+			if(ele.is("p:contains(fadeIn)")){
+				$("#img1").fadeIn();
+			}
+			
+			if(ele.is("p:contains(fadeOut)")){
+				$("#img1").fadeOut();
+			}	
+			
+			if(ele.is("p:contains(fadeTo)")){
+				$("#img1").fadeTo(1000,0.5);
+				// 스물므술 조금 흐려짐 (쇼핑몰에서 많이 사용..)
+			}
+			
+			if(ele.is("p:contains(fadeToggle)")){
+				$("#img1").fadeToggle();
+			}
+			
+			if(ele.is("p:contains(animate)")){
+				// 앞: 작동, 뒤 : 초
+				$("#img1").animate({
+					"width":"300px",
+					"height":"300px",
+					"left":"600px",
+					"top":"300px"
+				},2000);
+			
+			// img2라는 애를 복제해버려서 img1뒤에 슥 하고 붙임
+				var img2 = $("#img1").clone().attr("id","img2");
+				$("#img1").after(img2);
+				$("#img2").animate({
+					"width":"300px",
+					"height":"300px",
+					"left":"550px",
+					"top":"270px",
+					"opacity":"0.5"
+				},2000);
+				
+			}			
+			
+		}); 
+	
+	});
+</script>
+<body>
+<b>이펙트 메소드</b>
+	<div>
+		<p>show()</p>
+		<p>hide()</p>
+		<p>toggle()</p>
+		<p>slideDown()</p>
+		<p>slideUp()</p>
+		<p>fadeIn()</p>
+		<p>fadeOut()</p>
+		<p>fadeTo()</p>
+		<p>fadeToggle()</p>
+		<p>animate()</p>
+	</div>
+	<div>
+		<img id="img1" src="./images/img01.jpg">
+	</div>
+</body>
+</html>

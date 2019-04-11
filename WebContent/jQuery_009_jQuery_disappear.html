@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body{
+	margin: 10px auto;
+	width: 470px;
+}
+h3{
+	margin: 0px;
+	padding: 0 0.3em;
+}
+p{
+	margin: 0px;
+	padding: 0 0.5em;
+}
+.pane{
+	background: #BCF5A9;
+	padding: 10px 20px 10px;
+	position: relative;
+	border-top: 2px solid #818FF7;
+}
+
+.pane .delete{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+
+
+</style>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery.easing.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".delete").click(function(){
+			$(this).parent().slideUp("slow","easeInBounce");
+		});
+		
+		$("#view").click(function(){
+//			$(".pane").slideDown();	
+			$(".pane").css("display","block");	
+			
+		});
+	});
+</script>
+<body>
+<pre>기사형식에서 많이 사용하죠 disappear</pre>
+<button id="view">보이기</button> 
+<div class="pane">
+	<h3>인생</h3>
+	<p>성숙하다는 것은 다가오는 모든 생생한 위기를 피하지 않고 마주하는 것을 의미한다.</p>
+	<img alt="delete" class="delete" src="./images/del_btn.png">
+</div>
+<div class="pane">
+	<h3>시간</h3>
+	<p>시간은 환상이다. 점심시간은 두 배로 그렇다.</p>
+	<img alt="delete" class="delete" src="./images/del_btn.png">
+</div>
+<div class="pane">
+	<h3>노력</h3>
+	<p>현재가 과거와 다르길 바란다면 과거를 공부하라</p>
+	<img alt="delete" class="delete" src="./images/del_btn.png">
+</div>
+<div class="pane">
+	<h3>자신감</h3>
+	<p>능력이 부족할 수록 자만심이 더 강하다.</p>
+	<img alt="delete" class="delete" src="./images/del_btn.png">
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

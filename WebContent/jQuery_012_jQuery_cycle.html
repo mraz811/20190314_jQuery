@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div{
+		margin: 0 auto;
+	}
+	
+</style>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery.cycle.all.js"></script>
+<script type="text/javascript" src="./js/jquery.easing.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 자바스크립트는 set interval함수 사용하고 그래야 하는데.. 얘는 자동으로 해줌
+		$("#shuffle").cycle({
+			fx : "shuffle",
+			easing : "easeOutBack",
+			delay : 5
+		}); 
+	});
+	
+</script>
+<body>
+	<div id="shuffle">
+		<img alt="" src="./images/img01.jpg">
+		<img alt="" src="./images/img02.jpg">
+		<img alt="" src="./images/img03.jpg">
+		<img alt="" src="./images/img04.jpg">
+	</div>
+</body>
+</html>

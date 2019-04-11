@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div{
+	border: 2px solid red;
+	width: 200px;
+	padding: 10px 10px;
+}
+
+p{
+	background-color: pink;
+}
+</style>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("p:eq(0)").click(function(){
+			$(this).remove();
+		});
+		
+		$("p:eq(1)").click(function(){
+			// parent를 찾아서 그 안의 모든 것들을 지워버림 (div태그의 요소를 삭제)
+			$(this).parent().empty(); 
+		});
+		
+		// 잘라내서 다른 영역에 붙여넣기 (장바구니, 물건선택 등)
+		$("p:eq(2)").click(function(){
+			var obj = $(this).detach(); // 잘라서
+			$("h1").append(obj); // 잘라낸 거 붙이기 (h1안에 붙임)
+			$("h1").after(obj); // 잘라낸 거 붙이기 (h1밖에 붙음)
+		});
+		
+	});
+</script>
+<body>
+	<h1>엘리먼트 제거하기</h1>
+	<div>
+		<p>remove</p>
+		<p>비우기</p>
+		<p>잘라내기</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.main_menu>li{
+		width: 300px;
+	}
+	.sub_menu01{
+		cursor: pointer;
+	}
+	.sub_menu02{
+		display: none;
+	}
+
+</style>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("b").click(function(){
+			// b태그 눌렀을 때, 동급인 애(ul)를 .next로 slideDown 시키면 되겟다
+// 			$(this).next().slideDown();
+// 			$(this).parent().siblings().find("ul").slideUp();
+			// 얘를 한 뭉탱이로
+// 			$(this).next().slideDown().parent().siblings().find("ul").slideUp();
+			// end사용 (위 두가지 망법과 같음. 차이점은 없음)
+			$(this).next().slideDown().end().parent().siblings("li").find("ul").slideUp();
+		});
+	});
+</script>
+<body>
+	<p>메뉴 만들기</p>
+	<ul type="square" class="main_menu">
+		<li class="sub_menu01">
+			<b id="idTest">(1) CSS 셀렉터</b>
+			<ul type="disc" class="sub_menu02">
+				<li>Tag로 선택</li>
+				<li>Id로 선택</li>
+				<li>Class로 선택</li>
+				<li>parent child 선택하기</li>
+				<li>parent>child 선택하기</li>
+				<li>:nth-child로 선택하기</li>
+				<li>:first-child</li>
+				<li>:last-child</li>
+			</ul>
+		</li>
+		<li class="sub_menu01">
+			<b>(2) 속성 셀렉터</b>
+			<ul type="disc" class="sub_menu02">
+				<li title="aa">[attr]</li>
+				<li value="aa">[attr =value]</li>
+				<li value="aa">[attr!=value]</li>
+			</ul>
+		</li>
+		<li class="sub_menu01">
+			<b>(3) 폼 셀렉터</b>
+			<ul type="disc" class="sub_menu02">
+				<li>:input 타입</li>
+			</ul>
+		</li>
+		<li class="sub_menu01">
+			<b>(4) 사용자 정의 셀렉터</b>
+			<ul type="disc" class="sub_menu02">
+				<li>:eq(n)</li>
+				<li>:first</li>
+				<li>:last</li>
+				<li>:even</li>
+				<li>:odd</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

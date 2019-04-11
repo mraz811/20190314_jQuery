@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	img{
+		width: 200px;
+		height: 200px;
+		display: block;
+		float: left;
+	}
+	
+	#menubox{
+		position: relative;
+	}
+	
+	#menu{
+		overflow: auto; 	
+	}
+	
+	.sel{
+		width: 190px;
+		height: 190px;
+		border: 5px dotted yellow;
+		position: absolute;
+		left: 400px;
+	}
+	
+	button {
+		width: 200px;
+		height: 50px;
+		margin-left: 400px;
+		font-size: 20px;
+	}
+	
+</style>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		setInterval(function(){
+			var div = $("#menu");
+			$(".active").first().appendTo(div);
+		} , 50);
+		
+		
+		$("button").click(function(){
+			// 누르면 빠지고, 누르면 생기게.. class="active"
+			$("img").toggleClass("active");
+			if($("button").text()=="start"){
+				$("button").text("stop");
+			} else{
+				$("button").text("start");
+				alert("오늘의 점심은 "+($("img:eq(2)").attr("alt"))+" 입니다.");
+			}
+		});
+		
+	});
+</script>
+<body>
+	<h1>점심 식사 메뉴</h1>
+	<div id="menubox">
+		<div class="sel"></div>
+		<div id="menu">
+			<img alt="비빔밥" src="./images/bibimbab.jpg">
+			<img alt="냉면" src="./images/cold.jpg">
+			<img alt="돈가스" src="./images/don.jpg">
+			<img alt="파전" src="./images/pajeon.jpg">
+			<img alt="라면" src="./images/ramen.jpg">
+		</div>
+		<button>start</button>
+	</div>
+</body>
+</html>

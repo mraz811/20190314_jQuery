@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+// 회사에서 많이 사용하는 방식
+	$(function(){
+		$(".menu div").css("display","none");
+		$(".menu").hover(
+// 			function(){
+	 	
+// 				$(this).children("div").stop().toggle();
+// 			}
+		// 호버는 원래 function이 2개가 있다. 마우스가 올라갔을 때, 마우스가 빠졌을 때
+			function(){
+// 				$(this).children("div").show();
+				$(this).children("div").slideDown();
+			}, function(){
+				$(this).children("div").slideUp();
+			}
+		); 
+	});
+</script>
+<body>
+	<h1>돔탐색 메소드</h1>
+	<div id="menu01" class="menu">
+		<a href="#">필터링 메소드</a>
+		<div>.eq()</div>
+		<div>.slice()</div>
+		<div>.first()</div>
+		<div>.last()</div>
+	</div>
+	<div id="menu02" class="menu">
+		<a href="#">트리 탐색 메소드</a>
+		<div>.find()</div>
+		<div>.children()</div>
+		<div>.parents()</div>
+		<div>.next()</div>
+	</div>
+	<div id="menu03" class="menu">
+		<a href="./jQuery_006_jQueryDom03.html">기타 탐색 메소드</a>
+		<div>.add()</div>
+		<div>.is()</div>
+	</div>
+</body>
+</html>

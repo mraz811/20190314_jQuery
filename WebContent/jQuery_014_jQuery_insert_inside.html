@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div{
+		border: 1px dotted blue;
+	}
+	.prepend{
+		border: 1px dotted red;	
+	}
+	.append{
+		border: 1px dotted orange;
+	}
+</style>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("button:eq(0)").click(function(){
+			// prepend -> create element
+			// $("div").prepend("<p class='prepend'>prepend</p>"); 가 아래와 같음
+			$("div").prepend($("<p>").addClass("prepend").text("prepend"));
+		});
+
+		$("button:eq(1)").click(function(){
+			// div에 있는 p가 div에서 빠져서 body에 붙는다.
+			$("body").append($("div p:first"));
+		});
+		
+		$("button:eq(2)").click(function(){
+			$("div").html("<b>HTML 요소를 변경한다</b>");
+		});
+		
+		$("button:eq(3)").click(function(){
+			$("div").text("<b>TEXT.. 태그가 나온다</b>");
+		});
+		
+		
+	});
+</script>
+<body>
+	<button>prepend하기</button>
+	<button>append 하기</button>
+	<button>html하기</button>
+	<button>text하기</button>
+	<div>
+		<p>내부 삽입1</p>
+		<p>내부 삽입2</p>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div{
+		border: 1px solid red;
+	}
+
+</style>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("button:eq(0)").click(function(){
+			// 회사에서 많이 사용
+			// target이 앞에 위치한다.
+			$("#base").after("<div>새로운 엘리먼트(after)</div>");
+		});
+
+		$("button:eq(1)").click(function(){
+			// target이 뒤에 위치한다.
+// 			$("<div>새로운 엘리먼트(insertAfter)</div>").insertAfter("#base");
+			$("<div>").html("새로운엘리먼트(insertAfter(2))").insertAfter("#base");
+		});
+
+		$("button:eq(2)").click(function(){
+			// target이 앞에 위치한다.
+			$("#base").before("<div>추가된 엘리먼트(before)</div>");
+		});
+		
+		$("button:eq(3)").click(function(){
+			// target이 뒤에 위치한다.
+			$("<div>추가된 엘리먼트(insertBefore)</div>").insertBefore("#base");
+		});
+		
+		
+	});
+</script>
+<body>
+	<button>after()</button>
+	<button>insertAfter()</button>
+	<button>before()</button>
+	<button>insertBefore()</button>
+	<div id="base">
+		<p>외부삽입메소드</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+// 		$("p:eq(0)").add("span").css("color","red");
+		// slice는 태그의 개수가
+//		$("div p").slice(0,2).hide();	//slice는 선택만 그 뒤에 이벤트 hide로 숨기긴
+		// p태그가 display:none이 되어서 아예 p태그 자체가 사라져서 그 전 글들이 붙으...ㅁ.
+//  	$("div").children().slice(0,2).hide();
+		
+		// 원래 HTML 은 대문자 입니다!!!!!!! SPAN 대문자로 사용해야 됨
+		// 태그 네임을 가져온다던지 하면 무조건 대문자로 가져오기 때문에.. 
+		$("div").children().click(function(){
+// 			if($(this).prop("tagName")=="SPAN"){
+			if($(this).is("b")){
+				$(this).css("background-color","orange");
+			}
+			
+			// this = 내가 클릭 누른 것 이 p라면
+			if($(this).is("p")){
+				$(this).css("background-color","purple");
+			}
+		});
+		
+	});
+</script>
+<body>
+	<div>
+		<p>add()</p>
+		<span>add(): 선택한 element에 추가적인 Selector 표현식을 작성할 때 사용</span>
+		<p>is()</p>
+		<b>is(): 선택한 element 중에서 원하는 element가 있는지 확인</b>
+	</div>
+</body>
+</html>

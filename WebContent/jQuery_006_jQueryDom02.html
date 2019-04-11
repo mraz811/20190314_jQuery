@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+</script>
+<body>
+	<pre>
+		<b>find("앞에 있는 선택자"): 선택한 element중에서 탐색하고자 하는 element를 찾는다.</b>
+		<b>children("선택자"): 선택한 element중에서 탐색하고자 하는 element를 찾는다.</b>
+		<b>parent()/parents("선택자"): 선택한 element의 부모요소를 찾음</b>
+		<b>next("선택자"): 선택한 element 다음에 따라오는 요소를 찾음</b>
+	</pre>
+	<div>
+		<p><b>만솔</b></p>
+		<p id="chd">이슬</p>
+		<p>연지<span>^-^</span></p>
+		<p>영재</p>
+		<p>정현</p>
+	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// div 중에서 안에있는 b 전부?  // 속성은 css 속성을 사용하지 javascript 처럼 사용하지 않는다.
+			$("div").find("b").css({"font-size":"20px","color":"tomato"});  
+			$("div").children("#chd").text("2.children 메숴드드으으");
+			
+			// p태그 배열의 첫번째가 소속된 애의 위 div 전체 color먹임
+//			$("p").parent().css("background","pink");
+			// 얘를 더 많이 사용.. div>p parents( 안에 안치면 최상위인 body로 감 )
+			$("p").parents("div").css("background","orange");
+//			$("p").eq(2).css("background","green"); // 연지가 초록초록
+			// next()를 하면 <p>태그와 동급인 다음 태그를 찾습니다. (child가 아니라 동급을 찾음)
+			$("p").eq(2).next().css("background","green"); // 영재가 초록초록 
+			
+			
+		});
+	</script>
+</body>
+</html>

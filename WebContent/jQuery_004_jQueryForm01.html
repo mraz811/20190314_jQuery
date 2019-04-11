@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	function choice01() {
+		// javascript에서는 value 속성으로 가지고 오고, jQuery에서는 val()를 통해서 가져옵니다.
+		// javascript에서는 ~~.value = "값"; 으로 입력했고, jQuery에서는 ~~.val("값"); 으로 입력
+		
+// 		var val = document.getElementsByTagName("input")[0].value;
+// 		alert(val);
+		var doc = $("input:text").val();
+//		var doc = $("input").eq(0).val();
+ 		alert(doc);
+	}
+	
+	// 화면에서 마법사를 누르면 div에 text로 값을 뿌려주세요
+	function choice02() {
+ 		var doc = $("input:radio").val();
+//		var doc = $("input").eq(2).val();
+		$("#a").text(doc);
+	}
+	
+	function choice03() {
+		// 자동으로 true인 애만 넘어오게 됩니다.
+		var doc = $("input:checkbox").val();
+		$("#a").text(doc);
+	}
+	
+	// 온로드
+	$(function(){
+		
+		$("select").change(function(){
+			alert($("select option:selected").val());
+		});
+		
+// 		var selEle = document.getElementsByTagName("select")[0];
+// 		// 원래 회사에서 쓰는 문법 
+// 		// onchange 했을 때, 익명함수로, 변화되었을 때.. 값을 가져오?
+// 		selEle.onchange = function(){
+// 			alert(selEle.options[selEle.selectedIndex].value)
+// 		}
+	});
+	
+</script>
+<body>
+	<!-- 우리 ajax할때 자동적으로 Json형태로 보내주었던 Stringify(data) (bike02에서 햇엇음)  -->
+	<form>
+		<input type="text"/>
+		<input type="button" value="선택" onclick="choice01()"/>
+		<input type="radio" value="마법사" onclick="choice02()">
+		<input type="checkbox" value="웹개발자양성과정" onclick="choice03()">
+		웹 개발자 양성과정
+		<div id="a"></div>
+		<select>
+			<option value="목">목</option>
+			<option value="금">금</option>
+			<option value="SQLD">SQLD</option>
+		</select>
+	
+	</form>
+</body>
+</html>

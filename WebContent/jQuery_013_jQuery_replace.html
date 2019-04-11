@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 듀 개 밖에 없으니까 eq말고 first사용해도 됨여
+		$("button:first").click(function(){
+			$("p").replaceWith("<b>replaceWith메소드</b>");
+		});
+		$("button:last").click(function(){
+			$("<a href='#'>replaceAll메소드</a>").replaceAll("p");
+		});
+	});
+</script>
+<body>
+
+<div>
+	<p>Dom 대체</p>
+</div>
+
+<button>바꾸기(replaceWith)</button>
+<button>바꾸기(replaceAll)</button>
+
+</body>
+</html>

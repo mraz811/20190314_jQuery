@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	*{margin: 0px; padding: 0px;}
+	table{
+		width: 400px;
+	}
+	
+	table tr:nth-child(odd){
+		background-color: orange;
+	}
+	
+	input{
+		border-radius: 5px;
+	}
+	
+	fieldset {
+		width: 400px;
+	}
+	
+	body{
+		width: 1000px;
+		margin: 50px auto;
+	}
+	
+</style>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#emp_search").click(function(){
+			var empid = $("input[name=empid]").val();
+// 			alert(empid);
+			if(!isNaN(empid) && empid.length>2){ // 숫자만 입력, 3자리 이상
+				$.ajax({
+					url : "emplist.xml", // 전송할 페이지의 주소 입력
+					method : "get", 	// 서버에 전송하는 처리방식
+					async: true, 		// 비동기식(기본, 동기식은 false)
+					dataType: "xml", 	// 내가 전송받을 타입(xml, json, html, script)
+// 					data : {"key","value"}, // || "id=value", // 서버에 전송할 데이터
+					success : function(data){ // 성공시 실행. 전송받은 애는 바로 argument로 입력
+						// 내가 입력받은 애를 가지고 tag 중에 empid를 찾고, ex) 101을 찾고 그 부모인 ROW를 찾음
+						var empInfo = $(data).find("EMPLOYEE_ID:contains("+empid+")").parent();
+						// 그래서 찾아온 것이 ROW라면! (다른 태그일 수도 있으니까 확실히)
+						if($(empInfo).is("ROW")){
+							// input을 찾아서 각각의 값들을 넣어주어야 하니까 for문을 돌면서
+							$("table input").each(function(i){
+								// 현재 선택된 ROW, 중에서 val로 값을 하나씩 가져온다. empInfo의 자식들 중..
+								// 현재 화면의 위치와 xml의 순서를 맞춰놓았기 때문에 순서대로 하나씩 찍어준다.
+								$(this).val($(empInfo).children().eq(i).text());
+							});
+						} else { // 없을 경우
+							alert("검색 대상이 없습니다.");
+						}
+					
+					}, error :	function(request, status, error){ // 실패시 실행
+						//http에는 status, on ready라는 애가 있었죠. 똑같이 그 상태를 찍어 줄게요
+						alert("code: "+request.status +"\n"+ "message: "+ request.responseText + "\n" + "error: "+error);
+					} 
+				}); // jQuery AJAX 
+			} else {
+				alert("정확한 사원번호를 입력해 주세요");
+			}
+		});
+	});
+</script>
+<body>
+<h1>데이터 가져오기</h1>
+<fieldset>
+	<legend>사원정보조회하기</legend>
+	<input type="text" name="empid" maxlength="4">
+	<input type="button" value="조회" id="emp_search">
+</fieldset>
+
+<table>
+	<tr>
+		<th>사원번호</th>
+		<td>
+			<input type="text" name="empNum">
+		</td>
+	</tr>
+	<tr>
+		<th>이름</th>
+		<td>
+			<input type="text" name="lastName">
+		</td>
+	</tr>
+	<tr>
+		<th>이메일</th>
+		<td>
+			<input type="text" name="email">
+		</td>
+	</tr>
+	<tr>
+		<th>전화번호</th>
+		<td>
+			<input type="text" name="phone">
+		</td>
+	</tr>
+	<tr>
+		<th>입사일</th>
+		<td>
+			<input type="text" name="hire">
+		</td>
+	</tr>
+
+</table>
+
+<br>
+<pre>
+AJAX : Asynchronous Javascript and Xml 
+	 : 자바 스크립트와 xml을 가지고 비동기식 처리를 하겠다!
+
+XML (eXtensible Mark-up Language) 
+	: 열고 닫음이 있는 확장형 mark-up 언어
+	: Well-Formed / Validation
+HTML (Hyper Text Mark-up Language) 
+	: 글자만 전송하는 mark-up 언어
+	: 다른 형태를 전송하기 위해 multi part form을 사용했지!
+	: Well-Formed
+ 
+  * Well-formed : 열고 닫음이 잘 되어있다.
+  * validation : 처음에 설계된 설계에 따라서 잘 순서대로 작성이 되어있다.
+  
+  php는 한페이지에 모든 걸 다 때려넣는다. 그래서 찍어낸다고 하는 것.. 
+  	****화면의 일부분을 비동기식으로 변경하는 걸 ajax라는 기술을 사용해서 한다.****
+</pre>
+
+
+
+</body>
+</html>

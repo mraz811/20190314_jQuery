@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+table {
+	width: 400px;
+}
+
+table tr:nth-child(odd) {
+	background-color: orange;
+}
+
+input {
+	border-radius: 5px;
+}
+
+fieldset {
+	width: 400px;
+}
+
+body {
+	width: 1000px;
+	margin: 50px auto;
+}
+</style>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="./js/ajax02.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#emp_search").click(function(){
+			$.ajax({
+				url : "emplist.xml", // 전송할 페이지의 주소 입력
+				method : "get", 	// 서버에 전송하는 처리방식
+				async: true, 		// 비동기식(기본, 동기식은 false)
+				dataType: "xml", 	// 내가 전송받을 타입(xml, json, html, script)
+// 				data : {"key","value"}, // || "id=value", // 서버에 전송할 데이터
+				success : function(data){ // 성공시 실행. 전송받은 애는 바로 argument로 입력
+					var empRowList = $(data).find("ROW"); // row 전체를 가져옴 (nodelist형태)
+					if(empRowList.length > 0){
+						// body에 append를 하면 fieldset뒤에 붙겠죠
+						// javascript로 makeTable이라는 애를 이용해 테이블을 동적으로 만들어서 가져올 예정
+						// DB를 처음에만 타서 속도가 느리지만 xml/json형태로 가지고 있어서 속도가 빠름 (실시간동기화는 안됨)
+						$("body").append(makeTable(empRowList));
+					} else {
+						alert("테이블의 값이 없습니다.");
+					}	
+				
+				}, error :	function(request, status, error){ // 실패시 실행
+					//http에는 status, on ready라는 애가 있었죠. 똑같이 그 상태를 찍어 줄게요
+					alert("code: "+request.status +"\n"+ "message: "+ request.responseText + "\n" + "error: "+error);
+				} 
+			}); // jQuery AJAX 
+		});
+	});
+</script>
+<body>
+	<h1>데이터 가져오기</h1>
+	<fieldset>
+		<legend>사원정보조회하기</legend>
+		<input type="text" name="empid" maxlength="4"> <input
+			type="button" value="조회" id="emp_search">
+	</fieldset>
+
+
+
+
+</body>
+</html>

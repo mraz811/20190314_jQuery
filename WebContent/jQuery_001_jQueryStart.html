@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>제이쿼리 기본</title>
+<style type="text/css">
+img{
+	width: 100px;
+	height: 100px;
+}
+</style>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	/*
+		jQuery 기본 작성법: selector 표현식(CSS작성 방법 + javascript 작성방법)
+		ex) javascript : document.getElementById("id").style.color = "red";
+		ex) css: #id{color: red;}
+		ex) jQuery : $("#id").css("color","red");
+		--> $(셀렉터 표현식).메소드();
+		
+		javascript onload는
+		 - onload = function(){};
+		 - window.onload = function(){};
+		jQuery 는 온로드 없구요 자동실행이니까
+		 - $(function(){});  (축약방법)
+		 - $(document).ready(function(){});  (원래 방법)
+	*/
+	
+	// 1번 이미지 사이즈
+	function imgSize(){
+		// dom 탐색 (tag가 하나밖에 없으니까 그냥 img)
+//		$("img").css("width","200px");
+//		$("img").css("height","200px");
+// 		이렇게 하면 바꿀게 많으면 양이 많아지니까, 객체로 보내버리는 것! JSON형태
+//		$("img").css({"width":"300px","height":"300px"});
+//		혹은!
+//		$("img").css("width","50px").css("height","50px");
+//		또는 얘네를 섞어서 쓸 수 있다
+		$("img").css({"width":"300px","height":"300px"}).css("opacity","0.5");
+	}
+		 
+	// 목록 리스트 검색 : eq(index번호) 를 사용합니다.	 
+	function highLight(){
+		// 예전 방식 javascript
+//		var obj = document.getElementsByTagName("li")[1].style.backgroundColor = "tomato";
+//		$("li") 라고 쓰면 화면에서 li태그가 많으면 검색을 못하겠죠. 그러니 ul에 id 하나 줘봅시다. list01의 li를 검색하고 싶음
+//		그런데 이건 javascript에서는 list01로 찾은다음 children으로 찾아야 하니 어렵쥐요.. 
+//		하지만 jQuery에서는!!! 아래처럼 #list01 아래>의 li 중 index가 1인 애(eq(1))
+		$("#list01 > li").eq(1).css("background-color","yellow");
+	}
+
+	function addImg(){
+		// 우리 이전에 append말고 before라는 애로 붙였었다.
+		// img 태그를 찾아서 그 뒤에 다른 이미지를 붙일 예정
+		// img중에 마지막 이미지를 찾아서 그 뒤에 붙임
+		$("img").last().after("<img src='./images/img02.jpg'>");
+		// img 중에 마지막 이미지를 찾아서 그 앞에 붙임
+//		$("img").last().before("<img src='./images/img03.jpg'>");
+//		$("img").first().after("<img src='./images/img04.jpg'>")
+	}
+	
+	function hideImg(){
+		// 이전 방식
+//		document.getElementsByTagName("img")[0].style.display = "none";
+		// toggle()은 누르면 true, false가 자동으로 바뀜 숨겼다 나왔다 할 수 있음
+//		$("img").toggle();
+//		$("img").slideToggle();
+		$("img").hide(); // 얘는 다시 살아나지 않아요ㅠ.ㅠ display를 none으로 만드는 애
+	}
+	
+	function showImg(){
+		// javascript 작성방식
+//		document.getElementsByTagName("img")[0].style.display = "block";
+		$("img").show();
+	}
+	
+</script>
+<body>
+	<h1>jQuery 시작</h1>
+	<ul id="list01">
+		<li>1. Selector 표현식</li>
+		<li>2. DOM 탐색 메소드</li>
+		<li>3. DOM 처리 메소드</li>
+		<li>4. 이벤트 메소드</li>
+		<li>5. 이펙터 메소드</li>
+		<li>6. AJAX 메소드</li>
+		<li>7. 기타 등등</li>
+	</ul>
+	
+	<button onclick="imgSize()">이미지 축소</button>
+	<button onclick="highLight()">리스트 강조</button>
+	<button onclick="addImg()">이미지 추가</button>
+	<button onclick="hideImg()">이미지 숨기기</button>
+	<button onclick="showImg()">이미지 보이기</button>
+	
+	<div>
+		<img src="./images/img01.jpg">
+	</div>
+
+	
+	
+</body>
+</html>
